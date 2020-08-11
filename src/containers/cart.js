@@ -1,29 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
+import { calculateSubTotal, removeCartItem } from '../store/actions';
 
 const Cart = () => {
     
+    const dispatch = useDispatch();
+    
     const history = useHistory();
     
-    const cart = useSelector(state => state.products);
+    const cart = useSelector(state => state.cart);
     
     const [expandCart, setExpandCart] = useState(false);
     
+    useEffect(() => {
+        dispatch(calculateSubTotal())
+    }, [cart.items])
+    
     const gotToCheckout = () => {
         history.push("/checkout");
+    }
+    
+    const removeItem = itemId => {
+        dispatch(removeCartItem(itemId))
+    }
+    
+    if (cart.items.length <= 0) {
+        return null
     }
     
     return (
         <>
         <section className="cart-wrapper">
             <div className="view-cart-button" onClick={() => setExpandCart(!expandCart)}>
-                {/* <button className="button secondary">view cart</button> */}
-                View Cart (5 items)
+                View Cart ({cart.items.length} items)
             </div>
             <div className="checkout-wrapper">
                 <div className="checkout-amout">
-                    Subtotal: 100
+                    Subtotal: {cart.subTotal}
                 </div>
                 <div className="checkout-button">
                     <button className="button" onClick={() => gotToCheckout()}>Contine</button>
@@ -37,11 +51,14 @@ const Cart = () => {
             </div>
             <div className="modal-body">
                 {
-                    cart && cart.map((p,i) => (
-                        <div className="cart-item" key={i}>
-                            <span>{p.name}</span>
-                            <span>x 2</span>
-                            <span>USD 10.05</span>
+                    cart.items.map((i,idx) => (
+                        <div className="cart-item" key={idx}>
+                            <span>{i.name}</span>
+                            <span>x {i.quantity}</span>
+                            <span>USD {i.price * i.quantity}</span>
+                            <button onClick={()=>removeItem(i.id)}>
+                                remove
+                            </button>
                         </div>
                     ))
                 }

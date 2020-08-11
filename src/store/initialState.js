@@ -1,34 +1,46 @@
 export const items = [{
+        id: 1,
         name: 'Margherita Pizza',
         description: 'Tomato sauce, mozzarella, fresh basil.',
-        price: 10
+        price: 10,
+        image: 'https://www.freeiconspng.com/uploads/pizza-png-15.png'
     },
     {
+        id: 2,
         name: 'Margherita Pizza',
         description: 'Tomato sauce, mozzarella, fresh basil.',
-        price: 10
+        price: 20,
+        image: 'https://www.freeiconspng.com/uploads/pizza-png-15.png'
     },
     {
+        id: 3,
         name: 'Margherita Pizza',
         description: 'Tomato sauce, mozzarella, fresh basil.',
-        price: 10
+        price: 30,
+        image: 'https://www.freeiconspng.com/uploads/pizza-png-15.png'
     },
     {
+        id: 4,
         name: 'Margherita Pizza',
         description: 'Tomato sauce, mozzarella, fresh basil.',
-        price: 10
+        price: 40,
+        image: 'https://www.freeiconspng.com/uploads/pizza-png-15.png'
     },
     {
+        id: 5,
         name: 'Margherita Pizza',
         description: 'Tomato sauce, mozzarella, fresh basil.',
-        price: 10
+        price: 50,
+        image: 'https://www.freeiconspng.com/uploads/pizza-png-15.png'
     },
 ]
 
 export default {
     products: [...items],
     cart: {
-        items: {}
+        items: [],
+        subTotal: 0,
+        deliveryCharge: 10
     },
     userDetails: {
         name: '',

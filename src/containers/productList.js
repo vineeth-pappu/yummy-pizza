@@ -12,7 +12,7 @@ const ProductList = () => {
     return (
         <section className="product-list">
           {
-            products && products.map((p, i) => <ProductItem key={i} />)
+            products && products.map((p, i) => <ProductItem key={i} product={p} />)
           }
         </section>
     )
