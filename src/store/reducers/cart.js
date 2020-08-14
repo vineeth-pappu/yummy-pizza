@@ -36,6 +36,11 @@ export default (state = initialState.cart, action) => {
                 }, 0)
             };
 
+        case actionTypes.RESET_CART:
+            return {
+                ...initialState.cart
+            };
+
         default:
             return state;
     }

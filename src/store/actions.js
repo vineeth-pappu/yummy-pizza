@@ -35,6 +35,12 @@ export const calculateSubTotal = (item, idx) => {
     };
 };
 
+export const resetCart = () => {
+    return {
+        type: actionTypes.RESET_CART
+    };
+};
+
 export const updateUserDetails = userDetails => {
     return {
         type: actionTypes.UPDATE_USER_DETAILS,

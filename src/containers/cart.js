@@ -55,10 +55,10 @@ const Cart = () => {
         <>
         <section className="cart-wrapper">
             <div className="view-cart-button" onClick={() => setExpandCart(!expandCart)}>
-                <button>
+                <button className="expand-cart-btn">
                     {expandCart? ' - ' : ' + '}
                 </button>
-                View Cart ({cart.items.length} items)
+                Cart ({cart.items.length} items)
             </div>
             <div className="checkout-wrapper">
                 <div className="checkout-amout">
@@ -79,16 +79,16 @@ const Cart = () => {
                     cart.items.map((i,idx) => (
                         <div className="cart-item" key={idx}>
                             <span>{i.name}</span>
-                            <span>x {i.quantity}</span>
+                            {/* <span>x {i.quantity}</span> */}
                             <span>
                                 <CartCountStepper quantity={i.quantity} 
                                     increase={() => incrementCartItemQty(i, idx)} 
                                     decrease={() => decrementCartItemQty(i, idx)} />
                             </span>
                             <span>USD {i.price * i.quantity}</span>
-                            <button onClick={()=>removeItem(i.id)}>
+                            {/* <button onClick={()=>removeItem(i.id)}>
                                 remove
-                            </button>
+                            </button> */}
                         </div>
                     ))
                 }
