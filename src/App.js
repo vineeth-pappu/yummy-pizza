@@ -7,11 +7,14 @@ import Header from './components/header'
 import Home from './pages/home';
 import OrderCheckout from './pages/orderCheckout';
 import OrderConfirmation from './pages/orderConfirmation';
+import Loader from './containers/loader';
 
 function App() {
   return (
     <div className="App">
       <Header />
+      
+      <Loader />
       
       <main>
         <BrowserRouter>

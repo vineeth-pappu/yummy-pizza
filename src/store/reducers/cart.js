@@ -16,7 +16,7 @@ export default (state = initialState.cart, action) => {
             return {
                 ...state,
                 items: [
-                    ...state.items.filter(i => i.id != action.itemId)
+                    ...state.items.filter(i => i.id !== action.itemId)
                 ]
             };
 
@@ -24,7 +24,7 @@ export default (state = initialState.cart, action) => {
             return {
                 ...state,
                 items: [
-                    ...state.items.map(i => i.id == action.item.id ? action.item : i)
+                    ...state.items.map(i => i.id === action.item.id ? action.item : i)
                 ]
             };
 
@@ -34,6 +34,12 @@ export default (state = initialState.cart, action) => {
                 subTotal: state.items.reduce((total, item) => {
                     return total + (item.price * item.quantity)
                 }, 0)
+            };
+
+        case actionTypes.SET_GRAND_TOTAL:
+            return {
+                ...state,
+                grandTotal: action.total
             };
 
         case actionTypes.RESET_CART:

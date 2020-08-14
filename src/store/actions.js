@@ -1,5 +1,12 @@
 import * as actionTypes from './actionTypes';
 
+export const toggleLoader = status => {
+    return {
+        type: actionTypes.TOGGLE_LOADER,
+        status,
+    };
+};
+
 export const setProducts = products => {
     return {
         type: actionTypes.SET_PRODUCTS,
@@ -32,6 +39,13 @@ export const updateCartItem = (item, idx) => {
 export const calculateSubTotal = () => {
     return {
         type: actionTypes.CALCULATE_SUB_TOTAL
+    };
+};
+
+export const setGrandTotal = total => {
+    return {
+        type: actionTypes.SET_GRAND_TOTAL,
+        total
     };
 };
 

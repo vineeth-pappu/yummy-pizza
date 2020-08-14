@@ -41,10 +41,12 @@ export const items = [{
 ]
 
 export default {
-    products: [...items],
+    loading: false,
+    products: [],
     cart: {
         items: [],
         subTotal: 0,
+        grandTotal: 0,
         deliveryCharge: 10
     },
     userDetails: {
