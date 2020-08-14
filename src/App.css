@@ -167,6 +167,7 @@
 .modal-body {
     height: 200px;
     overflow: auto;
+    padding: 0 10px;
 }
 
 .modal-close-btn {
