@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { calculateSubTotal, removeCartItem } from '../store/actions';
+import { calculateSubTotal, removeCartItem, updateCartItem } from '../store/actions';
+import CartCountStepper from '../components/cartCountStepper';
 
 const Cart = () => {
     
@@ -11,7 +12,7 @@ const Cart = () => {
     
     const cart = useSelector(state => state.cart);
     
-    const [expandCart, setExpandCart] = useState(false);
+    const [expandCart, setExpandCart] = useState(true);
     
     useEffect(() => {
         dispatch(calculateSubTotal())
@@ -25,6 +26,27 @@ const Cart = () => {
         dispatch(removeCartItem(itemId))
     }
     
+    const decrementCartItemQty = (itemInCart, itemIndexInCart) => {
+        const item = {
+            ...itemInCart,
+            quantity: itemInCart.quantity - 1
+        }
+        
+        if (item.quantity == 0) {
+            dispatch(removeCartItem(item.id))
+        } else {
+            dispatch(updateCartItem(item))
+        }
+    }
+    
+    const incrementCartItemQty = (itemInCart, itemIndexInCart) => {
+        const item = {
+            ...itemInCart,
+            quantity: itemInCart.quantity + 1
+        }
+        dispatch(updateCartItem(item, itemIndexInCart))
+    }
+    
     if (cart.items.length <= 0) {
         return null
     }
@@ -33,6 +55,9 @@ const Cart = () => {
         <>
         <section className="cart-wrapper">
             <div className="view-cart-button" onClick={() => setExpandCart(!expandCart)}>
+                <button>
+                    {expandCart? ' - ' : ' + '}
+                </button>
                 View Cart ({cart.items.length} items)
             </div>
             <div className="checkout-wrapper">
@@ -55,6 +80,11 @@ const Cart = () => {
                         <div className="cart-item" key={idx}>
                             <span>{i.name}</span>
                             <span>x {i.quantity}</span>
+                            <span>
+                                <CartCountStepper quantity={i.quantity} 
+                                    increase={() => incrementCartItemQty(i, idx)} 
+                                    decrease={() => decrementCartItemQty(i, idx)} />
+                            </span>
                             <span>USD {i.price * i.quantity}</span>
                             <button onClick={()=>removeItem(i.id)}>
                                 remove

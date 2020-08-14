@@ -5,8 +5,6 @@
 
 .product-list {
     width: 100%;
-    max-width: 640px;
-    margin: auto;
 }
 
 .product-item {
@@ -78,6 +76,7 @@
 .button-add-item--wrapper {
     background-color: transparent !important;
     box-shadow: none;
+    padding: 0;
 }
 
 .item-count {
@@ -154,8 +153,24 @@
 
 .cart-item {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .cart-item span {
     padding: 5px;
+}
+
+.amount-details {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 10px;
+}
+
+.order-amount {
+    margin: 10px 0;
+    padding: 10px;
+    background: #4db322;
+    border-radius: 5px;
+    box-shadow: 0px 1px 5px grey;
 }

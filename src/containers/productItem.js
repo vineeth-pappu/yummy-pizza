@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCartItem, updateCartItem, removeCartItem } from '../store/actions';
+import CartCountStepper from '../components/cartCountStepper';
 
 const ProductItem = ({product}) => {
     
@@ -56,15 +57,9 @@ const ProductItem = ({product}) => {
                     !itemInCart
                     ? <button className="button secondary button-add-to-cart" 
                         onClick={()=>addItem(product)}>Add</button>
-                    : (<div className="button secondary button-add-item--wrapper">
-                            <button className="button secondary button-add-item"
-                            onClick={decrementCartItemQty}>-</button>
-                            <span className="item-count">
-                                {itemInCart.quantity}
-                            </span>
-                            <button className="button secondary button-add-item"
-                            onClick={incrementCartItemQty}>+</button>
-                        </div>)
+                    : <CartCountStepper quantity={itemInCart.quantity} 
+                        increase={incrementCartItemQty} 
+                        decrease={decrementCartItemQty} />
                 }
             </div>
         </div>

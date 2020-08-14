@@ -12,3 +12,8 @@ code {
 header {
     background-color: #222;
 }
+
+main {
+    max-width: 640px;
+    margin: auto;
+}

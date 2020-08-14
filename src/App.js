@@ -3,26 +3,25 @@ import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import './App.css';
 
 import Header from './components/header'
-import ProductList from './containers/productList';
-import Cart from './containers/cart';
+import Home from './pages/home';
+import OrderCheckout from './pages/orderCheckout';
+import OrderConfirmation from './pages/orderConfirmation';
 
 function App() {
   return (
     <div className="App">
       <Header />
       
-      <ProductList />
-      <Cart />
       <main>
-            {/* <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={Menu} />
-        <Route exact path="/checkout" component={Checkout} />
-        <Route exact path="/order-confirmation" component={OrderConfirmation} />
-        <Route component={NotFound} />
-      </Switch>
-    </BrowserRouter> */}
-
+        <BrowserRouter>
+            <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/checkout" component={OrderCheckout} />
+                <Route exact path="/order-confirmation" component={OrderConfirmation} />
+                <Route component={Home} />
+                {/* <Route component={NotFound} /> */}
+            </Switch>
+        </BrowserRouter>
       </main>
     </div>
   );
