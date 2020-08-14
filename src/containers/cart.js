@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { calculateSubTotal, removeCartItem, updateCartItem } from '../store/actions';
 import CartCountStepper from '../components/cartCountStepper';
+import CartItem from '../components/cartItem';
 
 const Cart = () => {
     
@@ -65,10 +66,11 @@ const Cart = () => {
                     Subtotal: {cart.subTotal}
                 </div>
                 <div className="checkout-button">
-                    <button className="button" onClick={() => gotToCheckout()}>Contine</button>
+                    <button className="button" onClick={() => gotToCheckout()}>Continue</button>
                 </div>
             </div>
         </section>
+        
         <section className={ 'cart-modal' + (expandCart ? ' expanded' : '')}>
             <div className="modal-header">
                 <h4>Your Orders</h4>
@@ -77,19 +79,12 @@ const Cart = () => {
             <div className="modal-body">
                 {
                     cart.items.map((i,idx) => (
-                        <div className="cart-item" key={idx}>
-                            <span>{i.name}</span>
-                            {/* <span>x {i.quantity}</span> */}
-                            <span>
-                                <CartCountStepper quantity={i.quantity} 
-                                    increase={() => incrementCartItemQty(i, idx)} 
-                                    decrease={() => decrementCartItemQty(i, idx)} />
-                            </span>
-                            <span>USD {i.price * i.quantity}</span>
-                            {/* <button onClick={()=>removeItem(i.id)}>
-                                remove
-                            </button> */}
-                        </div>
+                        <CartItem key={idx}
+                            item={i}
+                            itemIndex={idx}
+                            incrementCartItemQty={incrementCartItemQty}
+                            decrementCartItemQty={decrementCartItemQty} 
+                        />
                     ))
                 }
                 

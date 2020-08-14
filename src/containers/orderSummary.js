@@ -1,19 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 
 import ProductItem from './productItem'
 import CartCountStepper from '../components/cartCountStepper';
-import { removeCartItem, updateCartItem } from '../store/actions';
+import { removeCartItem, updateCartItem, calculateSubTotal } from '../store/actions';
+import CartItem from '../components/cartItem';
+import { convertUSDtoEURO } from '../helpers/currencyConverter';
 
 const OrderSummary = () => {
   
     const dispatch = useDispatch();
-    
     const history = useHistory();
     
-    
     const cart = useSelector(state => state.cart);
+    const selectedCurrency = useSelector(state => state.currency.selectedCurrency);
+    
+    const [grandTotal, setGrandTotal] = useState(0);
+    
+    useEffect(() => {
+        dispatch(calculateSubTotal())
+    }, [cart.items])
+    
+    useEffect(() => {
+        let total = cart.subTotal + cart.deliveryCharge
+        if (selectedCurrency.name == 'EURO') {
+            total = convertUSDtoEURO(total)
+        }
+        console.log({total});
+        
+        setGrandTotal(total);
+    }, [selectedCurrency, cart.subTotal])
+    
     
     const removeItem = itemId => {
         dispatch(removeCartItem(itemId))
@@ -51,31 +69,27 @@ const OrderSummary = () => {
             <div className="order-details">
                 {
                     cart.items.map((i,idx) => (
-                        <div className="cart-item" key={idx}>
-                            <span>{i.name}</span>
-                            <span>x {i.quantity}</span>
-                            <span>
-                                <CartCountStepper quantity={i.quantity} 
-                                    increase={() => incrementCartItemQty(i, idx)} 
-                                    decrease={() => decrementCartItemQty(i, idx)} />
-                            </span>
-                            <span>USD {i.price * i.quantity}</span>
-                        </div>
+                        <CartItem key={idx}
+                            item={i}
+                            itemIndex={idx}
+                            incrementCartItemQty={incrementCartItemQty}
+                            decrementCartItemQty={decrementCartItemQty} 
+                        />
                     ))
                 }
             </div>
             <div className="order-amount">
                 <div className="amount-details">
                     <span>Sub Total</span>
-                    <span> { cart.subTotal } </span>
+                    <span>USD { cart.subTotal } </span>
                 </div>
                 <div className="amount-details">
                     <span>Delivery Charges</span>
-                    <span> { cart.deliveryCharge } </span>
+                    <span>USD { cart.deliveryCharge } </span>
                 </div>
-                <div className="amount-details">
+                <div className="amount-details grand-total">
                     <span>Grand Total</span>
-                    <span> { cart.subTotal + cart.deliveryCharge } </span>
+                    <span>{selectedCurrency.name} { grandTotal } </span>
                 </div>
             </div>
         </div>

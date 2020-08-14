@@ -163,16 +163,40 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: 5px;
+    border-bottom: 1px solid lightgray;
 }
 
 .cart-item span {
     padding: 5px;
 }
 
+.cart-item-total-price {
+    text-align: center;
+    font-size: 14px;
+}
+
+.cart-item-name {
+    margin-bottom: 5px;
+}
+
+.cart-item-price {
+    font-size: 14px;
+}
+
 .amount-details {
     display: flex;
     justify-content: space-between;
     padding: 5px 10px;
+    font-size: 14px;
+}
+
+.amount-details.grand-total {
+    font-weight: bold;
+}
+
+.order-summary {
+    margin-bottom: 25px;
 }
 
 .order-amount {
@@ -248,4 +272,16 @@ button.button.place-order-button.disabled {
     pointer-events: none;
     cursor: not-allowed;
     background: #e58f86;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.toolbar label {
+    display: inline-block;
+    font-size: 14px;
+    margin-right: 5px;
 }

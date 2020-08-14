@@ -5,6 +5,7 @@ import OrderSummary from '../containers/orderSummary';
 import DeliveryDetails from '../containers/deliveryDetails';
 import { Link, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import CurrencySwitcher from '../containers/currencySwitcher';
 
 const OrderCheckout = () => {
     
@@ -28,16 +29,17 @@ const OrderCheckout = () => {
     
     return (
         <>
-            <Link to="/">Back</Link>
-            <br />
-            <br />
+            <div className="toolbar">
+                <Link to="/">Back</Link>
+                <CurrencySwitcher />
+            </div>
+            
             <OrderSummary />
-            <br />
+            
             <DeliveryDetails showError={showError} />
-            <br />
-            <br />
+            
             <button className={`button place-order-button ${showError ? 'disabled': ''}`} 
-            onClick={placeOrder}>
+                onClick={placeOrder}>
                 Place Order
             </button>            
         </>

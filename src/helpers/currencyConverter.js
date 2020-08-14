@@ -1,0 +1,1 @@
+export const convertUSDtoEURO = value => (value * 0.85)

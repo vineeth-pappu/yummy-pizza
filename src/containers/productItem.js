@@ -7,7 +7,7 @@ const ProductItem = ({product}) => {
     
     const dispatch = useDispatch();
     
-    const {name, description, price, id, image} = product
+    const {name, description, price, currency, id, image} = product
     
     const itemIndexInCart = useSelector(state => state.cart.items.findIndex(i => i.id == id));
     
@@ -47,7 +47,7 @@ const ProductItem = ({product}) => {
                 <div className="product-item__name">
                     {name}
                 </div>
-                <div className="product-item__price">{price}</div>
+                <div className="product-item__price"> {currency} {price}</div>
                 <div className="product-item__desc">
                     {description}
                 </div>

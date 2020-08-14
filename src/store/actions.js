@@ -29,7 +29,7 @@ export const updateCartItem = (item, idx) => {
     };
 };
 
-export const calculateSubTotal = (item, idx) => {
+export const calculateSubTotal = () => {
     return {
         type: actionTypes.CALCULATE_SUB_TOTAL
     };
@@ -45,5 +45,12 @@ export const updateUserDetails = userDetails => {
     return {
         type: actionTypes.UPDATE_USER_DETAILS,
         userDetails
+    };
+};
+
+export const setSelectedCurrency = currency => {
+    return {
+        type: actionTypes.SET_CHECKOUT_CURRENCY,
+        currency
     };
 };
