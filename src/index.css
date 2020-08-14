@@ -19,4 +19,5 @@ main {
     max-height: calc(100vh - 140px);
     overflow: auto;
     padding: 10px;
+    padding-bottom: 50px;
 }
