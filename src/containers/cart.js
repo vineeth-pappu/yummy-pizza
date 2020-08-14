@@ -71,7 +71,7 @@ const Cart = () => {
             </div>
         </section>
         
-        <section className={ 'cart-modal' + (expandCart ? ' expanded' : '')}>
+        <section className={ 'modal cart-modal' + (expandCart ? ' expanded' : '')}>
             <div className="modal-header">
                 <h4>Your Orders</h4>
                 <span className="modal-close-btn" onClick={()=> setExpandCart(false)}>close</span>
@@ -90,6 +90,8 @@ const Cart = () => {
                 
             </div>
         </section>
+        <div className={ 'modal-backdrop' + (expandCart ? ' show' : '')}
+            onClick={()=> setExpandCart(false)}></div>
         </>
     )
 }
