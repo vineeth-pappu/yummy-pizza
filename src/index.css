@@ -16,4 +16,5 @@ header {
 main {
     max-width: 640px;
     margin: auto;
+    margin-bottom: 30px;
 }

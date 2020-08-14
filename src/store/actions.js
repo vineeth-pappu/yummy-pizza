@@ -34,3 +34,10 @@ export const calculateSubTotal = (item, idx) => {
         type: actionTypes.CALCULATE_SUB_TOTAL
     };
 };
+
+export const updateUserDetails = userDetails => {
+    return {
+        type: actionTypes.UPDATE_USER_DETAILS,
+        userDetails
+    };
+};
