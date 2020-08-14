@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 
-import ProductItem from './productItem'
-import CartCountStepper from '../components/cartCountStepper';
-import { removeCartItem, updateCartItem, calculateSubTotal } from '../store/actions';
+import { removeCartItem, updateCartItem, calculateSubTotal, setGrandTotal } from '../store/actions';
 import CartItem from '../components/cartItem';
 import { convertUSDtoEURO } from '../helpers/currencyConverter';
 
@@ -16,26 +14,20 @@ const OrderSummary = () => {
     const cart = useSelector(state => state.cart);
     const selectedCurrency = useSelector(state => state.currency.selectedCurrency);
     
-    const [grandTotal, setGrandTotal] = useState(0);
-    
     useEffect(() => {
         dispatch(calculateSubTotal())
-    }, [cart.items])
+    }, [cart.items, dispatch])
     
     useEffect(() => {
         let total = cart.subTotal + cart.deliveryCharge
-        if (selectedCurrency.name == 'EURO') {
+        if (selectedCurrency.name === 'EURO') {
             total = convertUSDtoEURO(total)
         }
         console.log({total});
         
-        setGrandTotal(total);
-    }, [selectedCurrency, cart.subTotal])
+        dispatch(setGrandTotal(total));
+    }, [selectedCurrency, cart.subTotal, cart.deliveryCharge, dispatch])
     
-    
-    const removeItem = itemId => {
-        dispatch(removeCartItem(itemId))
-    }
     
     const decrementCartItemQty = (itemInCart, itemIndexInCart) => {
         const item = {
@@ -43,7 +35,7 @@ const OrderSummary = () => {
             quantity: itemInCart.quantity - 1
         }
         
-        if (item.quantity == 0) {
+        if (item.quantity === 0) {
             dispatch(removeCartItem(item.id))
         } else {
             dispatch(updateCartItem(item))
@@ -89,7 +81,7 @@ const OrderSummary = () => {
                 </div>
                 <div className="amount-details grand-total">
                     <span>Grand Total</span>
-                    <span>{selectedCurrency.name} { grandTotal } </span>
+                    <span>{selectedCurrency.name} { cart.grandTotal } </span>
                 </div>
             </div>
         </div>

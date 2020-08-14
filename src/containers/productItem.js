@@ -9,7 +9,7 @@ const ProductItem = ({product}) => {
     
     const {name, description, price, currency, id, image} = product
     
-    const itemIndexInCart = useSelector(state => state.cart.items.findIndex(i => i.id == id));
+    const itemIndexInCart = useSelector(state => state.cart.items.findIndex(i => i.id === id));
     
     const itemInCart = useSelector(state => state.cart.items[itemIndexInCart]);
     
@@ -23,7 +23,7 @@ const ProductItem = ({product}) => {
             quantity: itemInCart.quantity - 1
         }
         
-        if (item.quantity == 0) {
+        if (item.quantity === 0) {
             dispatch(removeCartItem(item.id))
         } else {
             dispatch(updateCartItem(item))
@@ -47,7 +47,7 @@ const ProductItem = ({product}) => {
                 <div className="product-item__name">
                     {name}
                 </div>
-                <div className="product-item__price"> {currency} {price}</div>
+                <div className="product-item__price"> {currency.code} {price}</div>
                 <div className="product-item__desc">
                     {description}
                 </div>
