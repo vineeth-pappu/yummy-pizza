@@ -81,7 +81,7 @@ const OrderSummary = () => {
                 </div>
                 <div className="amount-details grand-total">
                     <span>Grand Total</span>
-                    <span>{selectedCurrency.name} { cart.grandTotal } </span>
+                    <span>{selectedCurrency.name} { cart.grandTotal.toFixed(2) } </span>
                 </div>
             </div>
         </div>
