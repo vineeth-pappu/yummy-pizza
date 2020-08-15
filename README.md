@@ -3,9 +3,6 @@
 [Check it on Live](https://yummy-pizza-web.herokuapp.com/) https://yummy-pizza-web.herokuapp.com/
 
 ![alt text](https://raw.githubusercontent.com/vineeth-pappu/yummy-pizza/master/src/images/Screenshot.png)
-![alt text](https://raw.githubusercontent.com/vineeth-pappu/yummy-pizza/master/src/images/Capture.PNG)
-![alt text](https://raw.githubusercontent.com/vineeth-pappu/yummy-pizza/master/src/images/Capture2.PNG)
-![alt text](https://raw.githubusercontent.com/vineeth-pappu/yummy-pizza/master/src/images/Capture3.PNG)
 
 
 Order pizzas online through Yummy Pizza
