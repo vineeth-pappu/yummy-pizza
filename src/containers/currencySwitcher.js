@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSelectedCurrency } from '../store/actions';
+import { setSelectedCurrency, setAvailableCurrencies, toggleLoader } from '../store/actions';
+import { getCurrencies } from '../services/currency';
 
 const CurrencySwitcher = ({showError}) => {
     
@@ -14,6 +15,21 @@ const CurrencySwitcher = ({showError}) => {
         const currency = JSON.parse(value)
         dispatch(setSelectedCurrency(currency))
     }
+    
+    useEffect(() => {
+        const getAvailableCurrencies = async () => {
+            dispatch(toggleLoader(true));
+            const {data} = await getCurrencies()
+            dispatch(toggleLoader(false));
+            
+            if (data) {
+                dispatch(setAvailableCurrencies(data))
+                dispatch(setSelectedCurrency(data[0]))
+            }
+        }
+        
+        getAvailableCurrencies();
+    }, [dispatch])
     
     return (
         <div className="form-control">

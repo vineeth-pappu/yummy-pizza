@@ -58,7 +58,7 @@ const Cart = () => {
             </div>
             <div className="checkout-wrapper">
                 <div className="checkout-amout">
-                    Subtotal: {cart.subTotal}
+                    Subtotal: ${cart.subTotal}
                 </div>
                 <div className="checkout-button">
                     <button className="button" onClick={() => gotToCheckout()}>Continue</button>

@@ -68,3 +68,10 @@ export const setSelectedCurrency = currency => {
         currency
     };
 };
+
+export const setAvailableCurrencies = currencies => {
+    return {
+        type: actionTypes.SET_AVAILABLE_CURRENCIES,
+        currencies
+    };
+};

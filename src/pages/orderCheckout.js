@@ -15,6 +15,7 @@ const OrderCheckout = () => {
     
     const cart = useSelector(state => state.cart);
     const userDetails = useSelector(state => state.userDetails);
+    const selectedCurrency = useSelector(state => state.currency.selectedCurrency);
     
     const [showError, setShowError] = useState(false);
     
@@ -33,7 +34,7 @@ const OrderCheckout = () => {
             name: userDetails.name,
             email: userDetails.email,
             address: userDetails.address,
-            currencyId: 1
+            currencyId: selectedCurrency.id
         }
         
         dispatch(toggleLoader(true));

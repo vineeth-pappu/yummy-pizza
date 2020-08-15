@@ -9,6 +9,12 @@ export default (state = initialState.currency, action) => {
                 selectedCurrency: {...action.currency }
             };
 
+        case actionTypes.SET_AVAILABLE_CURRENCIES:
+            return {
+                ...state,
+                avilableCurrencies: [...action.currencies]
+            };
+
         default:
             return state;
     }

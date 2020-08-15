@@ -1,0 +1,1 @@
+export const DELIVERY_RATE = 10;
