@@ -1,8 +1,10 @@
 # Yummy Pizza
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+[![Build Status]
 
-![alt text](https://github.com/vineeth-pappu/yummy-pizza/blob/master/src/images/capture.PNG?raw=true)
+![alt text](https://raw.githubusercontent.com/vineeth-pappu/yummy-pizza/master/src/images/Capture.PNG)
+![alt text](https://raw.githubusercontent.com/vineeth-pappu/yummy-pizza/master/src/images/Capture2.PNG)
+![alt text](https://raw.githubusercontent.com/vineeth-pappu/yummy-pizza/master/src/images/Capture3.PNG)
 
 
 Order pizzas online through Yummy Pizza
